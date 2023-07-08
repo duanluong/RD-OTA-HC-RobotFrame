@@ -38,5 +38,5 @@ Reflash HC to new firmware
     Page Should Contain    ${CHECKSUM}
     Click Element    class:cbi-button.cbi-button-apply
     # End Process
-    Sleep    15
+    Sleep    5
     Close Browser
