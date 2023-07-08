@@ -12,3 +12,7 @@
 1. Open this project
 1. Check *Reflash HC to new firmware* in left side of the panel
 1. Click *Run*
+
+# RESULT
+![Final step](./images/selenium-screenshot-31.png)
+![Report](./images/result.png)
