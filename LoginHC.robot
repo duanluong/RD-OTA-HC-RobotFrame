@@ -7,6 +7,7 @@ ${URL1}           http://192.168.100.1/
 ${URL2}           ${URL1}cgi-bin/luci
 ${BROWSER}        chrome
 ${PASSWORD}       123456
+${TIMEOUT}        2
 ${IMAGE}          C:/Users/DuanLuong/Desktop/TempData/2023/4.RD-RobotFrame-OTA/firmware/lks7688.img
 ${CHECKSUM}       08b7c6162b5379aec029a3891564de00
 
@@ -16,16 +17,16 @@ Reflash HC to new firmware
     [Tags]    Functional
     Open Browser    ${URL2}    ${BROWSER}
     # Enter Password and Login
-    Wait Until Element Is Visible    class:cbi-button.cbi-button-apply    2
+    Wait Until Element Is Visible    class:cbi-button.cbi-button-apply    ${TIMEOUT}
     Input Text    name:luci_password    ${PASSWORD}
     Click Element    class:cbi-button.cbi-button-apply
     # Enter Flash menu
-    Wait Until Element Is Visible    class:tabmenu-item-system    2
+    Wait Until Element Is Visible    class:tabmenu-item-system    ${TIMEOUT}
     Click Element    class:tabmenu-item-system
-    Wait Until Element Is Visible    class:tabmenu-item-flashops    2
+    Wait Until Element Is Visible    class:tabmenu-item-flashops    ${TIMEOUT}
     Click Element    class:tabmenu-item-flashops
     # Upload file
-    Wait Until Element Is Visible    class:cbi-value-field    2
+    Wait Until Element Is Visible    class:cbi-value-field    ${TIMEOUT}
     Unselect Checkbox    id:keep
     Choose File    id:image    ${IMAGE}
     ${elements}=    Get WebElements    class:cbi-button.cbi-input-apply
@@ -34,7 +35,7 @@ Reflash HC to new firmware
     Click Element    ${elements}[1]
     # Verify checksum and Flash
     Wait Until Page Contains    Configuration files will be erased
-    Page Should Contain    08b7c6162b5379aec029a3891564de00
+    Page Should Contain    ${CHECKSUM}
     Click Element    class:cbi-button.cbi-button-apply
     # End Process
     Sleep    15
