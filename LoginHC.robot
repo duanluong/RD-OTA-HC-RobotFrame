@@ -8,6 +8,7 @@ ${URL2}           ${URL1}cgi-bin/luci
 ${BROWSER}        chrome
 ${PASSWORD}       123456
 ${TIMEOUT}        2
+${TEXT_SET_PWD}    Please set a password
 ${IMAGE}          C:/Users/DuanLuong/Desktop/TempData/2023/4.RD-RobotFrame-OTA/firmware/lks7688.img
 ${CHECKSUM}       08b7c6162b5379aec029a3891564de00
 
@@ -15,6 +16,18 @@ ${CHECKSUM}       08b7c6162b5379aec029a3891564de00
 Reflash HC to new firmware
     [Documentation]    Try to login HC
     [Tags]    Functional
+    #--------CHANGE PASSWORD---------------------
+    #Open Browser    ${URL1}    ${BROWSER}
+    # Setup Password And Go To Login Page
+    #Wait Until Page Contains    ${TEXT_SET_PWD}
+    #${condition}=    Page Should Contain    ${TEXT_SET_PWD}
+    #IF    ${condition} == ${True}
+    #Log    Need to set password
+    # mui-id-1
+    #Input Text    id:mui-id-1    ${PASSWORD}
+    #END
+    #Close Browser
+    #--------UPLOAD IMAGE AND UPDATE--------------
     Open Browser    ${URL2}    ${BROWSER}
     # Enter Password and Login
     Wait Until Element Is Visible    class:cbi-button.cbi-button-apply    ${TIMEOUT}
